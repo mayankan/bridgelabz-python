@@ -2,6 +2,11 @@ import random
 
 
 def generate_random_values(no_of_times):
+    """
+    Generates random values between 0 and 1 given number of times and gives percentage of getting 1 in the all values generated.
+    :param no_of_times: number of times random value is to be generated.
+    :return: percentage of 1 in all values generated randomly.
+    """
     random_flips = []
     for index in range(no_of_times):
         flip_coin = random.random()

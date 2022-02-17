@@ -1,4 +1,9 @@
 def get_prime_factors(input_no):
+    '''
+    Generates a list of Prime Factors of the given number.
+    :param input_no: number from which prime factors are derived.
+    :return: list of Prime Factors of the given number.
+    '''
     prime_factors = []
     while input_no % 2 == 0:
         prime_factors.append(2)
