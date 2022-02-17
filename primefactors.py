@@ -7,7 +7,8 @@ def get_prime_factors(input_no):
         while input_no % index == 0:
             prime_factors.append(index)
             input_no = input_no / index
-    prime_factors.append(input_no) if input_no > 2 else pass
+    if input_no > 2:
+        prime_factors.append(input_no)
     return prime_factors
 
 
