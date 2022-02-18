@@ -1,9 +1,9 @@
 def calculate_line_length(x, y):
     """
-
-    :param x:
-    :param y:
-    :return:
+    Calculates Line Length with given x-axis and y-axis coordinates.
+    :param x: x-axis coordinate of the line.
+    :param y: y-axis coordinate of the line.
+    :return: line length of given point.
     """
     length_of_point = (x * x + y * y) ** 1/2
     return length_of_point
@@ -11,12 +11,12 @@ def calculate_line_length(x, y):
 
 def check_line_length(_x1, _y1, _x2, _y2):
     """
-
-    :param _x1:
-    :param _y1:
-    :param _x2:
-    :param _y2:
-    :return:
+    Checks whether Line One is equal to Line Two or not.
+    :param _x1: x-axis coordinate of the line one.
+    :param _y1: y-axis coordinate of the line one.
+    :param _x2: x-axis coordinate of the line two.
+    :param _y2: y-axis coordinate of the line two.
+    :return: 1 if line one and two are equal else 0.
     """
     length_of_point1 = (_x1 * _x1 + _y1 * _y1) ** 1 / 2
     length_of_point2 = (_x2 * _x2 + _y2 * _y2) ** 1 / 2
@@ -28,12 +28,12 @@ def check_line_length(_x1, _y1, _x2, _y2):
 
 def compare_line_length(_x1, _y1, _x2, _y2):
     """
-
-    :param _x1:
-    :param _y1:
-    :param _x2:
-    :param _y2:
-    :return:
+    Compares Line One and Line Two, whether Line One is greater, lesser or equal to Line Two.
+    :param _x1: x-axis coordinate of the line one.
+    :param _y1: y-axis coordinate of the line one.
+    :param _x2: x-axis coordinate of the line two.
+    :param _y2: y-axis coordinate of the line two.
+    :return: 1 if Line One is greater, Two of Line Two is greater and 0 if both are equal.
     """
     length_of_point1 = (_x1 * _x1 + _y1 * _y1) ** 1 / 2
     length_of_point2 = (_x2 * _x2 + _y2 * _y2) ** 1 / 2
