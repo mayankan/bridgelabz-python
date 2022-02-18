@@ -1,4 +1,9 @@
 def check_triples(inputs_list):
+    """
+    Check Triplets in the list where the sum of three values equals to 0.
+    :param inputs_list: input values to check triplets having a sum 0.
+    :return: triplets in a list of list where the inner list contains the triplet values having sum 0.
+    """
     triples = []
     for _index in range(2, len(inputs_list)):
         first_value = inputs_list[_index-2]
