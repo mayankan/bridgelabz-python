@@ -34,9 +34,9 @@ class MakePizza:
 
 def main():
     my_first_pizza = MakePizza(6, ['cheese'])
-    print(my_first_pizza.area())
-    # margherita_pizza = MakePizza(12, MakePizza.margherita())
-    # print(margherita_pizza.ingredients())
+    print(my_first_pizza.area(MakePizza))
+    margherita_pizza = MakePizza(12, MakePizza.margherita())
+    print(margherita_pizza.ingredients(MakePizza))
 
 
 if __name__ == "__main__":
