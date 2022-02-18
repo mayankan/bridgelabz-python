@@ -12,6 +12,9 @@ class MakePizza:
     def area(self):
         return self._circle_area(self.radius)
 
+    def ingredients(self):
+        return self._get_ingredients(self.ingredients)
+
     @classmethod
     def margherita(cls):
         return cls(['cheese'])
@@ -21,12 +24,19 @@ class MakePizza:
         return cls(['onions', 'capsicum', 'tomatoes', 'grilled_mushrooms'])
 
     @staticmethod
-    def _circle_area(r):
-        return r ** 2 ** math.pi
+    def _circle_area(radius):
+        return radius ** 2 ** math.pi
+
+    @staticmethod
+    def _get_ingredients(ingredients):
+        return ",".join(ingredients)
 
 
 def main():
-    MakePizza(6, ['cheese']).area()
+    my_first_pizza = MakePizza(6, ['cheese'])
+    print(my_first_pizza.area(MakePizza))
+    margherita_pizza = MakePizza(12, MakePizza.margherita())
+    print(margherita_pizza.ingredients(MakePizza))
 
 
 if __name__ == "__main__":
