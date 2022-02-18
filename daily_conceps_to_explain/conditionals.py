@@ -1,10 +1,20 @@
 def if_case(value):
+    """
+    Explanation of If Block.
+    :param value: Integer number.
+    :return: string having comments.
+    """
     if value >= 0:
         return "Positive number or Zero"
     return "Out of If Block"
 
 
 def if_else_case(value):
+    """
+    Explanation of If-Else Block.
+    :param value: Integer number.
+    :return: string having comments.
+    """
     if value >= 0:
         return "Positive number or Zero"
     else:
@@ -12,6 +22,11 @@ def if_else_case(value):
 
 
 def if_elif_case(value):
+    """
+    Explanation of If-Elif-Else Block.
+    :param value: Integer number.
+    :return: string having comments.
+    """
     if value > 0:
         return "Positive number"
     elif value == 0:
@@ -21,6 +36,11 @@ def if_elif_case(value):
 
 
 def nested_if_case(value):
+    """
+    Explanation of Nested-If Block.
+    :param value: Integer number.
+    :return: string having comments.
+    """
     if value >= 0:
         if value == 0:
             print("Zero")
@@ -31,10 +51,20 @@ def nested_if_case(value):
 
 
 def short_if_else_case(value):
+    """
+    Explanation of Shorthand-If Block.
+    :param value: Integer number.
+    :return: string having comments.
+    """
     return "Positive number or Zero" if value >= 0 else "Negative number"
 
 
 def number_to_day_switch_case(value):
+    """
+    Explanation of Switch case using Dictionary.
+    :param value: Integer number.
+    :return: string having comments.
+    """
     switcher = {
         0: 'Sunday',
         1: 'Monday',
