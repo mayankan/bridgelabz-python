@@ -67,18 +67,19 @@ def throw_dice():
     return random.randint(1, 6)
 
 
-player1 = 0
-player2 = 0
+def main():
+    player1 = 0
+    player2 = 0
+    while True:
+        player1 = play(player1)
+        if player1 == -1:
+            print('Player 1 won')
+            break
+        player2 = play(player2)
+        if player2 == -1:
+            print('Player 2 won')
+            break
 
 
-while True:
-    player1 = play(player1)
-    if player1 == -1:
-        print('Player 1 won')
-        break
-
-    player2 = play(player2)
-    if player2 == -1:
-        print('Player 2 won')
-        break
-
+if __name__ == "__main__":
+    main()
