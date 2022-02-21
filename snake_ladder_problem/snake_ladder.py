@@ -1,7 +1,8 @@
 import random
 
-# Ladder : Jump to some point
+# Add two dice throws at 6
 
+# Ladder : Jump to some point
 LADDER = {
     10: 31,
     20: 42,
@@ -49,13 +50,17 @@ def check_win(new_pos):
 
 def play(prev_pos):
     dice = throw_dice()
+    # Optimise this snake and ladder case
     is_snake = check_snake(prev_pos, dice)
-    is_ladder = check_ladder(prev_pos, dice)
     if is_snake < prev_pos:  # if snake return snake value
+        print("Snake bite at", is_snake)
         return is_snake
-    elif is_ladder > prev_pos:  # if snake don't check for ladder / if ladder return ladder value
+    is_ladder = check_ladder(prev_pos, dice)
+    if is_ladder > prev_pos:  # if snake don't check for ladder / if ladder return ladder value
+        print("Ladder followed at", is_ladder)
         return is_ladder
     else:
+        print("Player moved from {0} to {1}".format(prev_pos, is_snake))
         i_won = check_win(is_snake)  # if snake or ladder is there avoid win call
         if i_won:
             return -1
@@ -71,10 +76,12 @@ def main():
     player1 = 0
     player2 = 0
     while True:
+        print("Player 1 Played")
         player1 = play(player1)
         if player1 == -1:
             print('Player 1 won')
             break
+        print("Player 2 Played")
         player2 = play(player2)
         if player2 == -1:
             print('Player 2 won')

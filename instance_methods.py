@@ -9,6 +9,9 @@ class MakePizza:
     def __repr__(self):
         return f'MakePizza({self.ingredients})'
 
+    def __str__(self):
+
+
     def area(self):
         return self._circle_area(self.radius)
 
