@@ -1,5 +1,6 @@
-from file_management import read_file
-from person import Person
+from contact import Person
+import file_management
+import contact
 
 
 class My_Phone_Book:
