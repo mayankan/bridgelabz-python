@@ -105,6 +105,10 @@ def choose_number():
 
 
 def game_over():
+    """
+    Returns True after ending game with a message of the Winner or if the game has tied.
+    :return: True after ending game
+    """
     try:
         # if the winning combination is satisfied, then the respective player wins
         count = 0
