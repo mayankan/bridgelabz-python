@@ -9,9 +9,6 @@ class MakePizza:
     def __repr__(self):
         return f'MakePizza({self.ingredients})'
 
-    def __str__(self):
-
-
     def area(self):
         return self._circle_area(self.radius)
 
@@ -37,7 +34,7 @@ class MakePizza:
 
 def main():
     my_first_pizza = MakePizza(6, ['cheese'])
-    print(my_first_pizza.area())
+    # print(my_first_pizza.area())
     # margherita_pizza = MakePizza(12, MakePizza.margherita())
     # print(margherita_pizza.ingredients())
 
