@@ -9,20 +9,22 @@ def gambling(stake, goal, trials):
     :param stake: The Initial Stake Amount the user is gambling.
     :param goal: The Goal Amount till User wants to Gamble.
     :param trials: The Number of Trials User wants to Gamble.
-    :return: The Number of Wins user won in th gamble.
+    :return: The Number of Wins and Number of Trials user played in the gamble.
     """
     try:
-        bets = 0
+        no_of_trials = 0
         wins = 0
         for times in range(trials):
             while stake != goal and stake != 0:
-                bets += 1
+                no_of_trials += 1
                 if random.randint(0, 1) == 0:
                     stake += 1
                     wins += 1
                 else:
                     stake -= 1
-        return wins, bets
+            if stake == goal:
+                break
+        return wins, no_of_trials
     except Exception as e:
         print("{} is raised.".format(e))
 
