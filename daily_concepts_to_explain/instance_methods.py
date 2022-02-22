@@ -17,11 +17,11 @@ class MakePizza:
 
     @classmethod
     def margherita(cls):
-        return cls(['cheese'])
+        return cls(6,['cheese'])
 
     @classmethod
     def farmhouse(cls):
-        return cls(['onions', 'capsicum', 'tomatoes', 'grilled_mushrooms'])
+        return cls(12,['onions', 'capsicum', 'tomatoes', 'grilled_mushrooms'])
 
     @staticmethod
     def _circle_area(radius):
@@ -34,7 +34,7 @@ class MakePizza:
 
 def main():
     my_first_pizza = MakePizza(6, ['cheese'])
-    # print(my_first_pizza.area())
+    print(my_first_pizza.area())
     # margherita_pizza = MakePizza(12, MakePizza.margherita())
     # print(margherita_pizza.ingredients())
 
