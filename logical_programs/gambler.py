@@ -12,11 +12,11 @@ def gambling(stake, goal, trials):
     :return: The Number of Wins and Number of Trials user played in the gamble.
     """
     try:
-        no_of_trials = 0
+        trials_completed = 0
         wins = 0
         for times in range(trials):
             while stake != goal and stake != 0:
-                no_of_trials += 1
+                trials_completed += 1
                 if random.randint(0, 1) == 0:
                     stake += 1
                     wins += 1
@@ -24,7 +24,7 @@ def gambling(stake, goal, trials):
                     stake -= 1
             if stake == goal:
                 break
-        return wins, no_of_trials
+        return wins, trials_completed
     except Exception as e:
         print("{} is raised.".format(e))
 
@@ -34,10 +34,10 @@ def main():
         stake = int(input("Enter stake: "))
         goal = int(input("Enter a goal: "))
         trials = int(input("Enter no. of trials: "))
-        wins, bets = gambling(stake, goal, trials)
+        wins, no_of_trials = gambling(stake, goal, trials)
         print(str(wins) + ' wins')
-        print(str(100 * wins / bets) + '% wins')
-        print(str((1 - wins / bets) * 100) + '% loss')
+        print(str(100 * wins / no_of_trials) + '% wins')
+        print(str((1 - wins / no_of_trials) * 100) + '% loss')
     except Exception as e:
         print("{} is raised.".format(e))
 
