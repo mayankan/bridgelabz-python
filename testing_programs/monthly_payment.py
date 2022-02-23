@@ -8,11 +8,14 @@ class Util:
         :param interest: Rate of Interest of Loan provided by user.
         :return: Monthly payment for Loan Payment.
         """
-        n = 12 * year
-        r = interest / (12 * 100)
+        try:
+            n = 12 * year
+            r = interest / (12 * 100)
 
-        payment = (principal * r) / (1 - ((1 + r) ** (-n)))
-        return round(payment, 2)
+            payment = (principal * r) / (1 - ((1 + r) ** (-n)))
+            return round(payment, 2)
+        except Exception as e:
+            print("{} is raised.".format(str(e)))
 
 
 def main():

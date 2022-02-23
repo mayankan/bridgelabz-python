@@ -6,19 +6,22 @@ class Util:
         :param unit: Unit provided by user to take the temperature.
         :return: Both Initial Temperature and Converted Temperature values.
         """
-        # Conversion from Celsius to Fahrenheit
-        if unit == 'C' or unit == 'c':
-            temperature = float(input("Enter temperature in Celsius: "))
-            print("Conversion from Celsius to Fahrenheit:")
-            fahrenheit = (temperature * (9 / 5)) + 32
-            return temperature, fahrenheit
+        try:
+            # Conversion from Celsius to Fahrenheit
+            if unit == 'C' or unit == 'c':
+                temperature = float(input("Enter temperature in Celsius: "))
+                print("Conversion from Celsius to Fahrenheit:")
+                fahrenheit = (temperature * (9 / 5)) + 32
+                return temperature, fahrenheit
 
-        # Conversion from Fahrenheit to Celsius
-        elif unit == 'F' or unit == 'f':
-            temperature = float(input("Enter temperature in Fahrenheit: "))
-            print("Conversion from Fahrenheit to Celsius:")
-            celsius = (temperature - 32) * (5 / 9)
-            return temperature, celsius
+            # Conversion from Fahrenheit to Celsius
+            elif unit == 'F' or unit == 'f':
+                temperature = float(input("Enter temperature in Fahrenheit: "))
+                print("Conversion from Fahrenheit to Celsius:")
+                celsius = (temperature - 32) * (5 / 9)
+                return temperature, celsius
+        except Exception as e:
+            print("{} is raised.".format(str(e)))
 
 
 def main():
