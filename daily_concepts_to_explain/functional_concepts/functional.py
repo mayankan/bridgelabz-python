@@ -9,7 +9,7 @@ FRUITS = ["Apple", "Banana", "Pear", "Apricot", "Orange"]
 
 
 def map_function():
-    map_object = map(lambda s: s[0] == "a", FRUITS)
+    map_object = map(lambda s: s[0] == "A", FRUITS)
     return list(map_object)
 
 

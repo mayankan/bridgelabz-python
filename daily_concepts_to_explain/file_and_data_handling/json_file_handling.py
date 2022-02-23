@@ -12,7 +12,7 @@ with open('test.json', 'w') as write_file:
     write_file.close()
 
 
-with open("test.json") as json_file:
+with open("test.json", 'r') as json_file:
     json_object = json.load(json_file)
     json_file.close()
 
