@@ -1,5 +1,6 @@
-import json
-import os
+# Import Packages
+import json # For Json load and dump
+import os # Checking json file present or not
 
 
 def read_file():
@@ -141,7 +142,7 @@ def modify_element_by_sid(contact):
 def delete_element_by_sid(s_id):
     """
     Deletes the values of element by s_id in the List of Elements of Phone Book Json File.
-    :param s_id: Serial Id to Delete the element in the Phone Book Json File.
+    :param s_id: Serial No to Delete the element in the Phone Book Json File.
     :return: True if Element is deleted else False if No Element corresponds to the s_id.
     """
     try:

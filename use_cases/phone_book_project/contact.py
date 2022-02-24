@@ -1,3 +1,4 @@
+# Use of a Phone Contact class to get and set contact operations inside a phone book.
 class Contact:
     def __init__(self, s_id, f_name, l_name, phone, email, address):
         self.s_id = s_id
