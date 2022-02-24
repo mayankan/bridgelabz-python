@@ -1,48 +1,168 @@
 import json
 import os
-import contact
 
 
-class FileManagement:
-    def __init__(self):
-        self.data = {}
-        self.file_name = "address_book.json"
-        self.create_new_book(self.file_name)
+def read_file():
+    """
+    Reads Phone Book Json File.
+    :return: All the contacts available in Phone Book Json File.
+    """
+    try:
+        with open("phone_book.json", 'r') as phone_book:
+            read_data = json.load(phone_book)
+        return read_data
+    except Exception as e:
+        print("{} is raised.".format(str(e)))
 
-    def create_new_book(self):
-        self.data = {'contacts': []}
-        if not os.path.exists(self.file_name):
-            with open(self.file_name, 'w') as phone_book:
-                json.dump(self.data, phone_book, indent=4)
-                phone_book.close()
+
+def read_contacts():
+    """
+    Reads Contacts key from Initial Dictionary in Phone Book Json File.
+    :return: List of Contacts containing multiple dictionaries of Contacts.
+    """
+    try:
+        data = read_file()
+        new_data = list(data['contacts'])
+        return new_data
+    except Exception as e:
+        print("{} is raised.".format(str(e)))
+
+
+def write_file(data):
+    """
+    Writes data to Phone Book Json File.
+    :param data: Data to be written in Phone Book Json File.
+    :return:
+    """
+    try:
+        with open("phone_book.json", 'w') as phone_book:
+            json.dump(data, phone_book)
+            phone_book.close()
+    except Exception as e:
+        print("{} is raised.".format(str(e)))
+
+
+def write_contacts(data):
+    """
+    Writes data to contacts key in the Phone Book Json File.
+    :param data: List of dictionaries of contacts to be written in Phone Book Json File.
+    :return:
+    """
+    try:
+        data['contacts'] = data
+        write_file(data)
+    except Exception as e:
+        print("{} is raised.".format(str(e)))
+
+
+def read_create_new_book():
+    """
+    Checks whether Phone Book Json File is there and creates it if it is not there.
+    :return: New Contacts Data from Phone Book Json File.
+    """
+    try:
+        data = {'contacts': []}
+        if not os.path.exists("phone_book.json"):
+            write_file(data)
         else:
-            with open(self.file_name, 'r') as phone_book:
-                self.data = json.load(phone_book)
-
-    def open_file(self, file_name):
-        """This method opens an existing json file.
-        :return: Data fetched from Json File
-        """
-        try:
-            with open(file_name, 'r') as phone_book:
-                self.data = json.load(phone_book)
-        except FileNotFoundError:
-            self.create_new_book(self.file_name)
-        except Exception as e:
-            print("{} is raised.".format(str(e)))
-
-    def create_contact_to_book(self, new_contact):
-        with open("address_book.json", 'a') as phone_book:
-            json.dump(self.file_name, phone_book)
-        return new_contact
-
-    def update_contact_by_id(contact_id):
-        with open("address_book.json", 'w') as phone_book:
-            json.dump()
-
-    def delete_contact_by_id(contact_id):
-        with open("address_book.json", 'w') as phone_book:
-            json.dump()
+            read_data = read_file()
+            if read_data == "":
+                write_file(data)
+            else:
+                data = read_data
+        return data
+    except Exception as e:
+        print("{} is raised.".format(str(e)))
 
 
+def append_element(contact):
+    """
+    Adds an element at the end of Phone Book List.
+    :param contact: Element to be added at the end of Phone Book List.
+    :return:
+    """
+    try:
+        data = read_contacts()
+        data.append(contact)
+        write_contacts(data)
+    except Exception as e:
+        print("{} is raised.".format(str(e)))
 
+
+def get_element_by_sid(s_id):
+    """
+    Returns Element by s_id in the List of Elements of Phone Book Json File.
+    :param s_id: Serial Id to Fetch the element in the Phone Book Json File.
+    :return: Element specific to s_id unique value or None if No Element corresponds to the s_id.
+    """
+    try:
+        data = read_contacts()
+        read_element = next((item for item in data if item["s_id"] == s_id), None)
+        return read_element
+    except Exception as e:
+        print("{} is raised.".format(str(e)))
+
+
+def get_last_sid():
+    """
+    Returns Last Element s_id in the List of Elements of Phone Book Json File.
+    :return: Last Element s_id in the List of Elements of Phone Book Json File.
+    """
+    try:
+        data = read_contacts()
+        if len(data) > 0:
+            read_element = data[len(data)-1]
+            return read_element["s_id"]
+        else:
+            return 0
+    except Exception as e:
+        print("{} is raised.".format(str(e)))
+
+
+def modify_element_by_sid(contact):
+    """
+    Updates the values of element by s_id in the List of Elements of Phone Book Json File.
+    :param contact: Serial Id to Update the element in the Phone Book Json File.
+    :return: Element updated to s_id unique value or None if No Element corresponds to the s_id.
+    """
+    try:
+        data = read_contacts()
+        read_index = next((i for i, item in enumerate(data) if item["s_id"] == contact["s_id"]), None)
+        if read_index:
+            data[read_index] = contact
+            write_contacts(data)
+            return contact
+        else:
+            return None
+    except Exception as e:
+        print("{} is raised.".format(str(e)))
+
+
+def delete_element_by_sid(s_id):
+    """
+    Deletes the values of element by s_id in the List of Elements of Phone Book Json File.
+    :param s_id: Serial Id to Delete the element in the Phone Book Json File.
+    :return: True if Element is deleted else False if No Element corresponds to the s_id.
+    """
+    try:
+        data = read_contacts()
+        read_index = next((i for i, item in enumerate(data) if item["s_id"] == "s_id"), None)
+        if read_index:
+            del data[read_index]
+            write_contacts(data)
+            return True
+        else:
+            return False
+    except Exception as e:
+        print("{} is raised.".format(str(e)))
+
+
+def main():
+    try:
+        read_create_new_book()
+    except Exception as e:
+        print("{} is raised.".format(str(e)))
+
+
+if __name__ == "__main__":
+    main()
