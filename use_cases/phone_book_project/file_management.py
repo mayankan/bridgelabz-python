@@ -22,8 +22,8 @@ def read_contacts():
     """
     try:
         data = read_file()
-        new_data = list(data['contacts'])
-        return new_data
+        fetched_contacts = list(data['contacts'])
+        return fetched_contacts
     except Exception as e:
         print("{} is raised.".format(str(e)))
 
@@ -49,8 +49,8 @@ def write_contacts(data):
     :return:
     """
     try:
-        data['contacts'] = data
-        write_file(data)
+        updated_data = {'contacts': data}
+        write_file(updated_data)
     except Exception as e:
         print("{} is raised.".format(str(e)))
 
@@ -66,7 +66,7 @@ def read_create_new_book():
             write_file(data)
         else:
             read_data = read_file()
-            if read_data == "":
+            if read_data == None:
                 write_file(data)
             else:
                 data = read_data
@@ -111,10 +111,10 @@ def get_last_sid():
     try:
         data = read_contacts()
         if len(data) > 0:
-            read_element = data[len(data)-1]
+            read_element = data[len(data) - 1]
             return read_element["s_id"]
         else:
-            return 0
+            return -1
     except Exception as e:
         print("{} is raised.".format(str(e)))
 
@@ -146,13 +146,27 @@ def delete_element_by_sid(s_id):
     """
     try:
         data = read_contacts()
-        read_index = next((i for i, item in enumerate(data) if item["s_id"] == "s_id"), None)
+        read_index = next((i for i, item in enumerate(data) if item["s_id"] == s_id), None)
         if read_index:
             del data[read_index]
             write_contacts(data)
             return True
         else:
             return False
+    except Exception as e:
+        print("{} is raised.".format(str(e)))
+
+
+def sort_elements_by_key(key):
+    """
+    Sorts List of Elements from Initial Dictionary in Phone Book Json File.
+    :param key: key column by which list of elements are sorted.
+    :return: List of Elements sorted by key.
+    """
+    try:
+        data = read_contacts()
+        data = sorted(data, key=lambda i: i[key])
+        return data
     except Exception as e:
         print("{} is raised.".format(str(e)))
 
