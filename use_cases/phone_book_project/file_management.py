@@ -153,7 +153,7 @@ def delete_element_by_sid(s_id):
     """
     try:
         data = read_contacts()
-        read_index = next((i for i, item in enumerate(data) if item["s_id"] == s_id), None)
+        read_index = next((index for index, item in enumerate(data) if item["s_id"] == s_id), None)
         if read_index:
             del data[read_index]
             write_contacts(data)

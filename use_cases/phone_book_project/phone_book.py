@@ -32,7 +32,8 @@ class MyPhoneBook:
         :return:
         """
         try:
-            contact = Contact(contact_dict["s_id"], contact_dict["f_name"], contact_dict["l_name"], contact_dict["phone"],
+            contact = Contact(contact_dict["s_id"], contact_dict["f_name"], contact_dict["l_name"],
+                              contact_dict["phone"],
                               contact_dict["email"], contact_dict["address"])
             return contact
         except Exception as e:
@@ -45,17 +46,46 @@ class MyPhoneBook:
         """
         try:
             s_id = fm.get_last_sid()
-            f_name = input("Enter First Name: ")
-            l_name = input("Enter Last Name: ")
-            phone = int(input("Enter Phone Number: "))
-            email = input("Enter Email Address: ")
-            address = input("Enter Full Postal Address: ")
-            contact = Contact(s_id + 1, f_name, l_name, phone, email, address)
-            contact_dict = self.to_dict(contact)
-            fm.append_element(contact_dict)
-            return "Added {} to Phone Book".format(contact.f_name)
+            contact_instance = Contact(s_id + 1, "", "", "", "", "")
         except Exception as e:
             print("{} is raised.".format(str(e)))
+        while True:
+            try:
+                contact_instance.f_name = input("Enter First Name: ")
+                if contact_instance.f_name == "" or len(contact_instance.f_name) <= 4:
+                    print("First Name not valid. Please try again.")
+                    continue
+                contact_instance.l_name = input("Enter Last Name: ")
+                if contact_instance.l_name == "" or len(contact_instance.l_name) <= 4:
+                    print("Last Name not valid. Please try again.")
+                    continue
+            except Exception as e:
+                print("{} is raised.".format(str(e)))
+            try:
+                contact_instance.phone = int(input("Enter Phone Number: "))
+            except ValueError:
+                print("Phone Number should be a number. Please try again.")
+                continue
+            except Exception as e:
+                print("{} is raised.".format(str(e)))
+            try:
+                if len(str(contact_instance.phone)) != 10:
+                    print("Phone Number should be a 10 digit number. Please try again.")
+                    continue
+                contact_instance.email = input("Enter Email Address: ")
+                if not self.validate_email(contact_instance.email):
+                    print("Email Address not valid. Please try again.")
+                    continue
+                contact_instance.address = input("Enter Full Postal Address: ")
+                if len(contact_instance.address) <= 10:
+                    print("Address should be least 10 characters. Please try again.")
+                    continue
+                contact_dict = self.to_dict(contact_instance)
+                fm.append_element(contact_dict)
+                break
+            except Exception as e:
+                print("{} is raised.".format(str(e)))
+        return "Added {} to Phone Book".format(contact_instance.f_name)
 
     def get_all_contacts(self):
         """
@@ -95,35 +125,63 @@ class MyPhoneBook:
         """
         try:
             s_no = int(input("Enter Serial No. to Modify Contact details: "))
-            contact = fm.get_element_by_sid(s_no - 1)
-            if contact:
-                contact = self.to_class(contact)
-                f_name = input("Enter First Name ({}): ".format(contact.f_name))
-                if f_name == "":
-                    f_name = contact.f_name
-                l_name = input("Enter Last Name ({}): ".format(contact.l_name))
-                if l_name == "":
-                    l_name = contact.l_name
-                phone = input("Enter Phone Number ({}): ".format(contact.phone))
-                while type(phone) != int and phone == "":
-                    phone = contact.phone if phone == "" else input("Enter Phone Number correctly ({}): "
-                                                                    .format(contact.phone))
-                email = input("Enter Email Address ({}): ".format(contact.email))
-                if email == "":
-                    email = contact.email
-                address = input("Enter Full Postal Address ({}): ".format(contact.address))
-                if address == "":
-                    address = contact.address
-                _contact = Contact(s_no - 1, f_name, l_name, phone, email, address)
-                contact_dict = self.to_dict(_contact)
-                fm.modify_element_by_sid(contact_dict)
-                return "Contact updated by Serial {}: Name: {} {}, Phone: {}" \
-                       ", Email Id: {}, Address: {}".format(s_no, _contact.f_name, _contact.l_name, _contact.phone,
-                                                            _contact.email, _contact.address)
-            else:
-                return "No Contact found for Serial {}.".format(s_no)
+            fetched_contact_dict = fm.get_element_by_sid(s_no - 1)
         except Exception as e:
             print("{} is raised.".format(str(e)))
+        while True:
+            if fetched_contact_dict:
+                try:
+                    contact = self.to_class(fetched_contact_dict)
+                    f_name = input("Enter First Name ({}): ".format(contact.f_name))
+                    if f_name == "":
+                        f_name = contact.f_name
+                    elif len(f_name) <= 4:
+                        print("First Name not valid. Please try again.")
+                        continue
+                    l_name = input("Enter Last Name ({}): ".format(contact.l_name))
+                    if l_name == "":
+                        l_name = contact.l_name
+                    elif len(contact.l_name) <= 4:
+                        print("Last Name not valid. Please try again.")
+                        continue
+                    phone = input("Enter Phone Number ({}): ".format(contact.phone))
+                    if phone == "":
+                        phone = contact.phone
+                    elif len(str(phone)) != 10:
+                        print("Phone Number should be a 10 digit number. Please try again.")
+                        continue
+                except Exception as e:
+                    print("{} is raised.".format(str(e)))
+                try:
+                    phone = int(phone)
+                except ValueError:
+                    print("Phone Number should be a number. Please try again.")
+                    continue
+                except Exception as e:
+                    print("{} is raised.".format(str(e)))
+                try:
+                    email = input("Enter Email Address ({}): ".format(contact.email))
+                    if email == "":
+                        email = contact.email
+                    elif not self.validate_email(email):
+                        print("Email Address not valid. Please try again.")
+                        continue
+                    address = input("Enter Full Postal Address ({}): ".format(contact.address))
+                    if address == "":
+                        address = contact.address
+                    elif len(address) <= 10:
+                        print("Address should be least 10 characters. Please try again.")
+                        continue
+                    _contact = Contact(s_no - 1, f_name, l_name, phone, email, address)
+                    contact_dict = self.to_dict(_contact)
+                    fm.modify_element_by_sid(contact_dict)
+                    return "Contact updated by Serial {}: Name: {} {}, Phone: {}" \
+                           ", Email Id: {}, Address: {}".format(s_no, _contact.f_name, _contact.l_name, _contact.phone,
+                                                                _contact.email, _contact.address)
+                except Exception as e:
+                    print("{} is raised.".format(str(e)))
+            else:
+                return "No Contact found for Serial {}.".format(s_no)
 
     @staticmethod
     def delete_contact():
@@ -161,7 +219,7 @@ class MyPhoneBook:
                     sorted_contacts = fm.sort_elements_by_key(derive_column.get(column))
                     for contact in sorted_contacts:
                         _contact = self.to_class(contact)
-                        print("Contact {}: Name: {} {}, Phone: {}" \
+                        print("Contact {}: Name: {} {}, Phone: {}"
                               ", Email Id: {}, Address: {}".format(_contact.s_id + 1, _contact.f_name, _contact.l_name,
                                                                    _contact.phone, _contact.email, _contact.address))
                     break
@@ -172,11 +230,17 @@ class MyPhoneBook:
         except Exception as e:
             print("{} is raised.".format(str(e)))
 
+    @staticmethod
+    def validate_email(email):
+        import re
+        match = re.search("^[a-zA-Z]+[@][a-zA-Z]+[.][a-zA-Z]+$", email)
+        return True if match else False
+
 
 def main():
     try:
         print("Inside Phone Book Main")
-        phone_book = MyPhoneBook()
+        # phone_book = MyPhoneBook()
     except Exception as e:
         print("{} is raised.".format(str(e)))
 
