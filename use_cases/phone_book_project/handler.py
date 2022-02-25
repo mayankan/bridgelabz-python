@@ -9,12 +9,10 @@ def welcome_screen():
     try:
         while True:
             print("Welcome to Your Phone Book.")
-            print("1 - Add Contact")
-            print("2 - Modify Contact by Serial No.")
-            print("3 - Delete Contact by Serial No.")
-            print("4 - See all Contacts")
-            print("5 - Get Contact by Serial No.")
-            print("6 - Show Sorted Contacts")
+            print_stmts = ["Add Contact", "Modify Contact by Serial No.", "Delete Contact by Serial No.",
+                           "See all Contacts", "Get Contact by Serial No.", "Show Sorted Contacts"]
+            for print_stmt in range(len(print_stmts)):
+                print("{} - {}".format(print_stmt+1, print_stmts[print_stmt]))
             # Asks user for input from the above options.
             operation_number = int(input("Enter the above number(1-6) to do the following operation: "))
             operations = MyPhoneBook()
