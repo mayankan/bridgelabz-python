@@ -1,1 +1,12 @@
-{"contacts": [{"s_id": 0, "f_name": "Mayank", "l_name": "Anand", "phone": 9560291169, "email": "mayankan@gmail.com", "address": "B8"}]}
+{
+  "contacts": [
+    {
+      "s_id": 0,
+      "f_name": "Mayank",
+      "l_name": "Anand",
+      "phone": 9560291169,
+      "email": "mayankan@gmail.com",
+      "address": "B8, Acharya Niketan"
+    }
+  ]
+}

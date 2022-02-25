@@ -1,6 +1,6 @@
 # Import Packages
-import json # For Json load and dump
-import os # Checking json file present or not
+import json  # For Json load and dump
+import os  # Checking json file present or not
 
 
 def read_file():
@@ -37,7 +37,7 @@ def write_file(data):
     """
     try:
         with open("phone_book.json", 'w') as phone_book:
-            json.dump(data, phone_book)
+            json.dump(data, phone_book, indent=2)
             phone_book.close()
     except Exception as e:
         print("{} is raised.".format(str(e)))
@@ -50,7 +50,9 @@ def write_contacts(data):
     :return:
     """
     try:
-        updated_data = {'contacts': data}
+        updated_data = {
+            'contacts': data
+        }
         write_file(updated_data)
     except Exception as e:
         print("{} is raised.".format(str(e)))
@@ -62,7 +64,11 @@ def read_create_new_book():
     :return: New Contacts Data from Phone Book Json File.
     """
     try:
-        data = {'contacts': []}
+        data = {
+            'contacts': [
+
+            ]
+        }
         if not os.path.exists("phone_book.json"):
             write_file(data)
         else:
