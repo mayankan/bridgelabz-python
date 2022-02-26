@@ -2,7 +2,7 @@
 
 # bitwise operators
 
-
+# https://www.w3schools.com/python/python_operators.asp
 
 num1 = 10
 
