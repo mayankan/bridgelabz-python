@@ -3,6 +3,7 @@ class LinkedList:
     This class contains various methods that can be performed on the linked list
     The value of the start_node will be set to None since the Linked list will be empty at the time of creation
     """
+
     def __init__(self):
         self.start_node = None
 
@@ -166,3 +167,23 @@ class LinkedList:
                     x.data, y.data = int(y.data), int(x.data)
                 x = x.ref
             end = x
+
+
+class Node:
+    """Creating a Node class with reference initially set to None
+    Parameters:
+        data = the value contained in the node
+    """
+
+    def __init__(self, data):
+        self.data = data
+        self.ref = None
+
+    def get_data(self):
+        return self.data
+
+    def get_next(self):
+        return self.ref
+
+    def set_next(self, new_next):
+        self.ref = new_next
