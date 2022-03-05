@@ -1,34 +1,31 @@
 def binary_word_search(filename, search_word):
-    """Binary Search the word from word list
-    Parameters:
-        filename: text file
-        word: input word to be searched in the file
-    Returns:
-        prints whether the word is found or not
-        :param search_word:
+    """
+    Searches given search word in the file and returns True if found.
+    :param filename: filename where text is stored to be searched.
+    :param search_word: word to be searched entered by the user.
+    :return: True if word is found else False.
     """
     my_list = []
     # Splitting the words and adding it to an empty list
     with open(filename, 'r') as f:
-        print(f)
-        # for line in f:
-        #     my_list.extend(line.lower().split())
+        for line in f:
+            my_list.extend(line.lower().split())
 
     new_list = my_list
     # Traversing through the list to find the input word
     for i in range(len(new_list)):
         if search_word == new_list[i]:
-            print("The word is found")
+            return True
             break
     else:
-        print("The word is not found")
+        return False
 
 
 def main():
     filename = "mytext.txt"
     # Taking input from the user
     word = input("Enter a word to be searched: ")
-    binary_word_search(filename, word)
+    print("Word is found.") if binary_word_search(filename, word) else print("Word is not found.")
 
 
 if __name__ == "__main__":

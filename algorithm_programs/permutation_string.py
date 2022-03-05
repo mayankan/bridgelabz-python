@@ -1,31 +1,26 @@
-def permutation_string(_new_string):
-    """Permutations of a string
-    Parameters:
-        _new_string: Takes a string as user input
-    Returns:
-        All the possible permutations of that string
+def permutation_string(_input_string):
     """
-    if len(_new_string) == 1:
+    Returns the permutation of given input string by the user.
+    :param _input_string: input string given by the user.
+    :return: permutations of all the characters in the string.
+    """
+    if len(_input_string) == 1:
         return _new_string
-    # Creating an empty list and appending the combinations of that string
+    # Creating an empty list and appending all the combinations of that string
     permutation_list = []
-    for i in _new_string:
-        remaining = [j for j in _new_string if j != i]
-        a = permutation_string(remaining)
-
-        for k in a:
-            permutation_list.append(i + k)
+    for char in _input_string:
+        remaining_chars = [ch for ch in _input_string if ch != i]
+        recursive_fn = permutation_string(remaining_chars)
+        for each_char in recursive_fn:
+            permutation_list.append(char + each_char)
     return permutation_list
 
 
 def main():
-    new_string = input("Enter a string: ")
-    combinations = permutation_string(new_string)
+    input_string = input("Enter a string: ")
+    combinations = permutation_string(input_string)
     print(combinations)
-    count = 0
-    for characters in combinations:
-        count += 1
-    print("Number of Combinations: ", count)
+    print("Number of Combinations: ", len(combinations))
 
 
 if __name__ == "__main__":

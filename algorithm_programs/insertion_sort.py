@@ -1,35 +1,33 @@
-def insertion_sort(elements_number):
-    """Insertion Sort
-    Parameters:
-        elements_number: the length of array as input
-    Returns:
-        Sorted array
+def insertion_sort(array_input):
     """
-    array_input = []
-    # Taking inputs from the user to fill up the values in the list
-    for i in range(0, elements_number):
-        ele = int(input("Enter a number: "))
-        array_input.append(ele)
-
+    Sorting the elements using insertion sort.
+    :param array_input: Input array provided by user for sorting.
+    :return: sorted list.
+    """
     print("Input array:", array_input)
     # Traversing from 1 to length of the array
-    for i in range(1, len(array_input)):
-        k = array_input[i]
+    for element in range(1, len(array_input)):
+        cur_pos = array_input[element]
         # Move elements of array that are greater than k to one position ahead of their current
-        j = i - 1
-        while j >= 0 and k < array_input[j]:
-            array_input[j + 1] = array_input[j]
-            j -= 1
-        array_input[j + 1] = k
-
-    print("Sorted array: ")
-    for i in range(len(array_input)):
-        print(array_input[i])
+        next_pos = cur_pos - 1
+        while next_pos >= 0 and cur_pos < array_input[next_pos]:
+            array_input[next_pos + 1] = array_input[next_pos]
+            next_pos -= 1
+        array_input[next_pos + 1] = cur_pos
+    return array_input
 
 
 def main():
-    elements_number = int(input("Enter number of elements : "))
-    insertion_sort(elements_number)
+    no_of_elements = int(input("Enter number of elements : "))
+    array_input = []
+    # Taking inputs from the user to fill up the values in the list
+    for element in range(no_of_elements):
+        _element = int(input("Enter a number: "))
+        array_input.append(_element)
+    sorted_array = insertion_sort(array_input)
+    print("Sorted array: ")
+    for index in sorted_array:
+        print(index)
 
 
 if __name__ == "__main__":
