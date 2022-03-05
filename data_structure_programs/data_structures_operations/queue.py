@@ -1,5 +1,6 @@
 class Queue:
-    """This class stores items in a First In First Out manner.
+    """
+    This class stores items in a First In First Out manner.
     the following class creates and empty queue and performs the following methods
     """
 

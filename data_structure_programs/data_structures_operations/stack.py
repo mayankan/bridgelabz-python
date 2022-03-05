@@ -1,5 +1,6 @@
 class Stack:
-    """The following class creates an empty stack and performs various methods mentioned below
+    """
+    The following class creates an empty stack and performs various methods mentioned below
     """
 
     def __init__(self):

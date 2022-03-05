@@ -71,10 +71,14 @@ def linked_list_removal(_list):
     return _list
 
 
-if __name__ == "__main__":
+def main():
     prim_num = print_prime()
     dicti = check_anagrams(prim_num)
     list_anagrams = anagram_and_dictform(dicti)
     que_llist = linked_list_operation(list_anagrams)
     dequed_list = linked_list_removal(que_llist)
     que_llist.print_list()
+
+
+if __name__ == "__main__":
+    main()

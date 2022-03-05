@@ -12,8 +12,8 @@ def catalan_number(num):
 
 def binary_tree():
     test_cases = int(input('Enter the number of test cases : '))
-    case =[]
-    for i in range(0,test_cases):
+    case = []
+    for i in range(0, test_cases):
         cases = int(input())
         cases = catalan_number(cases)
         case.append(cases)

@@ -156,7 +156,7 @@ class LinkedList:
         return temp
 
     def bubble_sort(self):
-        """This function sorts the list in an ascending order using bubble sort method
+        """This function sorts the list in ascending order using bubble sort method
         """
         end = None
         while end != self.start_node:

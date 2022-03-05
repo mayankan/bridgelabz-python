@@ -1,5 +1,6 @@
 def print_prime(hi, lo):
-    """Return a list of prime numbers between the specified range
+    """
+    Return a list of prime numbers between the specified range
     [2, 3, 5, 7]
     """
     prime_lis = []
@@ -24,8 +25,9 @@ def range_prime_generation():
     return
 
 
-def prime_printing(new_array):  #
-    """ Function to print prime number in a ranges
+def prime_printing(new_array):
+    """
+    Function to print prime number in a ranges
     :param new_array:
     :return:
     """
@@ -41,6 +43,5 @@ def main():
     range_prime_generation()
 
 
-# Driver function
 if __name__ == "__main__":
     main()
