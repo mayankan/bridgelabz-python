@@ -4,23 +4,29 @@ def binary_guess(_limit):
     :param _limit: Number from 0 till which user has to guess the number.
     :return: Number guessed by the user.
     """
-    lower_limit = 0
-    higher_limit = _limit
-    while lower_limit != higher_limit:
-        mid_value = (lower_limit + higher_limit) // 2
-        print("Enter 1 if number is between ", lower_limit, " - ", mid_value,
-              "\n Enter 2 if number is between ", (mid_value + 1), " - ", higher_limit)
-        choice = int(input())
-        if choice == 1:
-            higher_limit = mid_value
-        else:
-            lower_limit = mid_value + 1
-    return lower_limit
+    try:
+        lower_limit = 0
+        higher_limit = _limit
+        while lower_limit != higher_limit:
+            mid_value = (lower_limit + higher_limit) // 2
+            print("Enter 1 if number is between ", lower_limit, " - ", mid_value,
+                  "\n Enter 2 if number is between ", (mid_value + 1), " - ", higher_limit)
+            choice = int(input())
+            if choice == 1:
+                higher_limit = mid_value
+            else:
+                lower_limit = mid_value + 1
+        return lower_limit
+    except Exception as e:
+        print("{} is raised".format(e))
 
 
 def main():
-    limit = int(input("Enter a number: "))
-    print("The number you guessed is ", binary_guess(limit))
+    try:
+        limit = int(input("Enter a number: "))
+        print("The number you guessed is ", binary_guess(limit))
+    except Exception as e:
+        print("{} is raised".format(e))
 
 
 if __name__ == "__main__":
